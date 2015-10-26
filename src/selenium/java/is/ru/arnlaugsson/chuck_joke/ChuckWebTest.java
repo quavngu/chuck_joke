@@ -82,7 +82,7 @@ public class ChuckWebTest {
 
         WebElement lastName = driver.findElement(By.id("lastName"));
         lastName.clear();
-        lastName.sendKeys("Pétursson");
+        lastName.sendKeys("Petursson");
 
         driver.findElement(By.cssSelector("button[type=\"submit\"]")).click();
         driver.get(baseUrl + "/specific.html");
@@ -96,7 +96,7 @@ public class ChuckWebTest {
         WebElement updatedBox = wait.until(
             ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".alert-success"))
         );
-        String expected = "Only Hannes Pétursson can prevent forest fires.";
+        String expected = "Only Hannes Petursson can prevent forest fires.";
         String found = driver.findElement(By.id("results")).getText();
         assertEquals(expected, found);
     }

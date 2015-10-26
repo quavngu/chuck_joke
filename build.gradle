@@ -30,6 +30,20 @@ dependencies {
 task selenium(type: Test, dependsOn: installDist) {
     testClassesDir = sourceSets.selenium.output.classesDir
     classpath = sourceSets.selenium.runtimeClasspath
+
+    ant.condition(property: "os", value: "windows") { os(family: "Windows") }
+    ant.condition(property: "os", value: "unix") { os(family: "unix") }
+
+    doFirst {
+        switch(ant.properties.os) {
+	    case 'unix':
+                'build/install/chuck_joke/bin/chuck_joke &'.execute()
+	         break
+            case 'windows':
+	        'build\\install\\chuck_joke\\bin\\chuck_joke.bat'.execute()
+		break
+	}
+    }
 }
 
 task seleniumXvfb(type: Test, dependsOn: installDist) {
